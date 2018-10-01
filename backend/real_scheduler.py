@@ -5,17 +5,15 @@ import time
 #conn = views.db_conn()
 accounts = []
 
+
+# This will run periodically to probe the AWS accounts to see if there are changes to the instances running in the accounts.
 while True:
     conn = views.db_conn()
     data = conn.execute('SELECT * FROM AWS_ACCOUNT')
     for accs in data:
       accounts.append(accs)
     conn.close()
-    #print(accounts)
     for i in accounts:
       print("scanning account "+str(i[0]))
-      #try:
       controls.refresh_accs(i[2], i[1], i[3], i[4], i[0])
-      #except Exception as e:
-        #print(e)
-    time.sleep(10)
+    time.sleep(3600)
