@@ -123,7 +123,7 @@ def get_user():
     return jsonify(jdata)
 
 
-@app.route('/add_aws_acc', methods=['POST', 'GET'])
+@app.route('/add_aws_acc', methods=['POST'])
 @token_validator
 def add_aws_account():
     endpoints = {"US East Ohio":"ec2.us-east-2.amazonaws.com",
@@ -143,8 +143,6 @@ def add_aws_account():
                  "EU-Paris": "ec2.eu-west-3.amazonaws.com",
                  "South America Sao Paulo": "ec2.sa-east-1.amazonaws.com"}
                  
-    if request.method == 'GET':
-        return render_template('account_add.html')
     if request.method == 'POST':
         content = request.get_json()
         aws_id = content['AWS_ID']
