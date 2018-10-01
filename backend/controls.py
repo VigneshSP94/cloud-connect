@@ -2,8 +2,8 @@
 # Project Cloud-Connect
 
 import boto3
-import sqlite3
-import views
+#import sqlite3
+#import views
 from views import db_conn
 
 
@@ -135,9 +135,10 @@ def refresh_accs(aws_key, aws_id, aws_reg, end_pt_url, acc_id):
     instances_from_session=[]
 
     subnet_Ids_from_session = []
-    subnets_from_database = []
-    fetchit = conn.execute('select subnet_id from subnet where account_id=?', (str(acc_id)))
+    # subnets_from_database = []
+    # fetchit = conn.execute('select subnet_id from subnet where account_id=?', (str(acc_id)))
     #print(fetchit.fetchall())
+    
     """
     for i in fetchit:
         subnets_from_database.append(i[0])
