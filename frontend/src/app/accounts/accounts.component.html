@@ -1,0 +1,137 @@
+<style>
+    #funcs {
+            position: absolute;
+            right:0;
+            top:0;
+        }
+    </style>
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <p></p>
+    
+    <div id="funcs">
+        <button class="btn btn-sm btn-primary mr-2" data-toggle="modal" data-target="#addModal"><i class="material-icons">add</i></button>
+        <button class="btn btn-sm btn-primary mr-2"><i class="material-icons">autorenew</i></button>
+    </div>
+    
+    <table class="table table-inverse table-hover" id="accounts_table">
+        <thead>
+          <tr>
+            <th scope="col"><font color="#007BFF">#</font></th>
+            <th scope="col"><font color="#007BFF">Account Name</font></th>
+            <th scope="col"><font color="#007BFF">Location</font></th>
+            <th scope="col"><font color="#007BFF">AWSID</font></th>
+            <th scope="col"><font color="#007BFF">Secret Key</font></th>
+            <th scope="col"><font color="#007BFF"></font></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of Accounts">
+            <td>{{data["Account_ID"]}}</td>
+            <td>{{data["Account_Name"]}}</td>
+            <td>{{data["Region"]}}</td>
+            <td>{{data["AWS_ID"]}}</td>
+            <td>{{data["AWS_KEY"]}}</td>
+            <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal"
+                (click)="getTabledata(data)"><i class="material-icons">edit</i></button></td>
+          </tr>
+        </tbody>
+        <button class="btn btn-primary" (click)="getAccs()" >checkit</button>
+      </table>
+    
+      <!-- The Modal -->
+    <div class="modal" id="editModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+    
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Edit Account</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="">Account Name</label>
+                    <input type="text" class="form-control" [(ngModel)]='acdetails.Account_Name' name="Account_Name">
+                </div>
+                <div class="form-group">
+                    <label for="">Location</label>
+                    <select class="form-control" [(ngModel)]="acdetails.Region" name="Region" required>
+                        <option *ngFor="let region of endPoints">{{region}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">ID</label>
+                    <input type="text" class="form-control" [(ngModel)]='acdetails.AWS_ID' name="AWS_ID">
+                </div>
+                <div class="form-group">
+                    <label for="">Key</label>
+                    <input type="text" class="form-control" [(ngModel)]='acdetails.AWS_KEY' name="AWS_KEY">
+                </div>
+            </div>
+    
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button class="btn btn-secondary btn-lg mr-2" data-dismiss="modal">Close</button>
+                <button (click)="summafunc()" type="button" class="btn btn-primary btn-lg">Update</button>
+            </div>
+    
+          </div>
+        </div>
+      </div>
+    
+      <!-- Add Account Modal -->
+    
+      <div class="modal" id="addModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+    
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Add Account</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+    
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form>
+                    <div class="form-group">
+                        <label for="">Account Name</label>
+                        <input type="text" class="form-control rounded-0" [(ngModel)]="newaccount.Account_Name" name="Account_Name" required>
+                    </div>
+                    <!--
+                        <div class="form-group">
+                        <label for="">Location</label>
+                        <input type="text" class="form-control" [(ngModel)]="newaccount.Region" name="Region" required>
+                    </div>
+                    -->
+                    <div class="form-group">
+                        <label for="">Location</label>
+                        <select class="form-control" [(ngModel)]="newaccount.Region" name="Region" required>
+                            <option *ngFor="let region of endPoints">{{region}}</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="">ID</label>
+                        <input type="text" class="form-control" [(ngModel)]="newaccount.AWS_ID" name="AWS_ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Key</label>
+                        <input type="text" class="form-control" [(ngModel)]="newaccount.AWS_KEY" name="AWS_KEY" required>
+                    </div>
+                    </form>
+                </div>
+    
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btn-lg mr-2" data-dismiss="modal">Close</button>
+                    <button (click)="addAcc()" type="button" class="btn btn-primary btn-lg">Add</button>
+                </div>
+    
+              </div>
+            </div>
+          </div>

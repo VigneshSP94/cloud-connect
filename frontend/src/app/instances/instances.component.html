@@ -1,0 +1,66 @@
+<style>
+        #refresh {
+        position: absolute;
+        right:0;
+        top:0;
+        }
+        #search {
+        border-right: 2px;
+        border-left: 2px;
+        }
+     </style>
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+     <div id="filters">
+     </div>
+     <div id="search" class="form-group">
+        <div style="display: flex;" >
+           <input name="search" type="text" class="form-control col-xs-2 mr-5 ml-5" [(ngModel)]='Ac_filter' placeholder="Search by Account"
+           style="width: 500px;">
+           <input name="search" type="text" class="form-control col-xs-2" [(ngModel)]='In_filter' placeholder="Search by Instance"
+           style="width: 500px;">
+        </div>
+     </div>
+     <div id="refresh">
+        <!--<button class="btn btn-sm btn-primary mr-2" (click)="filters()">Show Filter</button>-->
+        <button class="btn btn-sm btn-primary mr-2" (click)="getIns()"><i class="material-icons">autorenew</i></button>
+        <select class="btn btn-primary mr-2" id="req_type" [(ngModel)]="action" name="action">
+            <option value="terminate">Terminate</option>
+            <option value="start">Start</option>
+            <option value="stop">Stop</option>
+            <option value="reboot">Reboot</option>
+        </select>
+        <!--
+           <button *ngIf="action_instances.length > 0" class="btn btn-primary btn-sm"><i class="material-icons">done</i></button>
+           <button *ngIf="action_instances.length == 0" class="btn btn-primary btn-sm" disabled><i class="material-icons">done</i></button>
+           -->
+        <button (click)="onSelect()" [disabled]="action == ''" class="btn btn-primary btn-sm"><i class="material-icons">done</i></button>
+     </div>
+     <table class="table table-inverse table-hover" id="instance_table">
+        <thead>
+           <tr>
+              <th scope="col"><font color="#007BFF">Select</font></th>
+              <th scope="col"><font color="#007BFF">IP Addr</font></th>
+              <th scope="col"><font color="#007BFF">Instance Type</font></th>
+              <th scope="col"><font color="#007BFF">Instance ID</font></th>
+              <th scope="col"><font color="#007BFF">Public IP</font></th>
+              <th scope="col"><font color="#007BFF">Private DNS</font></th>
+              <th scope="col"><font color="#007BFF">Subnet ID</font></th>
+              <th scope="col"><font color="#007BFF">Status</font></th>
+              <th scope="col"><font color="#007BFF">Account</font></th>
+           </tr>
+        </thead>
+        <tbody>
+           <tr *ngFor="let data of instances | accountFilter: Ac_filter:In_filter">
+              <td><input type="checkbox"></td>
+              <td>{{data["IP"]}}</td>
+              <td>{{data["Instance Type"]}}</td>
+              <td>{{data["Instance_ID"]}}</td>
+              <td>{{data["Public IP"]}}</td>
+              <td>{{data["Private DNS"]}}</td>
+              <td>{{data["Subnet ID"]}}</td>
+              <td>{{data["Status"]}}</td>
+              <td>{{data["Account_Name"]}}</td>
+           </tr>
+        </tbody>
+     </table>

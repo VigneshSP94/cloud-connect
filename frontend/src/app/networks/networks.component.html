@@ -1,0 +1,31 @@
+<style>
+  .right-menu{
+    border-left:0px;
+    border-right:100px;
+  }
+</style>
+
+<div class="right-menu">
+  <button class="btn btn-sm btn-primary" (click)="getIt()">Refresh</button>
+</div>
+
+<table class="table table-inverse table-hover">
+  <thead>
+    <tr>
+      <th scope="col"><font color="#007BFF">#</font></th>
+      <th scope="col"><font color="#007BFF">Network</font></th>
+      <th scope="col"><font color="#007BFF">Subnet ID</font></th>
+      <th scope="col"><font color="#007BFF">VPC ID</font></th>
+      <th scope="col"><font color="#007BFF">Account Name</font></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of networks">
+      <td>{{data["SNO"]}}</td>
+      <td>{{data["Network"]}}</td>
+      <td>{{data["Subnet ID"]}}</td>
+      <td>{{data["VPC ID"]}}</td>
+      <td>{{data["Account Name"]}}</td>
+    </tr>
+  </tbody>
+</table>

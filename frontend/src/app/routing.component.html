@@ -1,0 +1,26 @@
+<button class="btn btn-secondary ml-2" *ngIf='loginstatus' (click)='logout()'><i class="material-icons">
+    power_settings_new
+    </i></button>
+
+<div class="row">
+    <div class="container">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLink]='["/networks"]'>Networks</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLink]='["/instances"]'>Instances</a>
+            </li>
+          <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" href="#">S3 Buckets</a>
+            </li>
+          <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLink]='["/accounts"]'>Accounts</a>
+            </li>
+          <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLink]='["/users"]'>Users</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<p></p>
