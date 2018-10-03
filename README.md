@@ -11,4 +11,12 @@ Run real_scheduler script in the backend. ( This script will scan all the AWS ac
 
 Views is the mail flask file, you can host it as per your wish (Using WSGI).
 
+Frontend:
+
+Frontend of this application is developed using AngularJS.
+
+The frontend could be buggy and may not have enough feature, but if you as users could report the bug or request for features, I will be happy to work on it.
+
+You can watch how the app works in this video.
+
 
