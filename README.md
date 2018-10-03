@@ -7,4 +7,6 @@ Setup -
 
 Run db.py script, it will create the database with a user to login.
 
-Run 
+Run real_scheduler script in the backend. ( This script will scan all the AWS accounts in the database and fetches the changes in the account and writes to the application's database)
+
+
