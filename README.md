@@ -15,7 +15,7 @@ Frontend:
 
 Frontend of this application is developed using AngularJS.
 
-The frontend could be buggy and may not have enough feature, but if you as users could report the bug or request for features, I will be happy to work on it.
+The frontend could be buggy and may not have enough features, but if you as users could report the bug or request for features, I will be happy to work on it.
 
 You can watch how the app works in this video.
 
