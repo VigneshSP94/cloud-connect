@@ -7,6 +7,8 @@ Setup -
 
 Run db.py script, it will create the database with a user to login.
 
-Run real_scheduler script in the backend. ( This script will scan all the AWS accounts in the database and fetches the changes in the account and writes to the application's database)
+Run real_scheduler script in the backend. ( This script will scan all the AWS accounts in the database once per hour and fetches the changes in the account and writes to the application's database)
+
+Views is the mail flask file, you can host it as per your wish (Using WSGI).
 
 
