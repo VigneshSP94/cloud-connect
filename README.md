@@ -15,6 +15,11 @@ Frontend:
 
 Frontend of this application is developed using AngularJS.
 
+npm - v6.4.1
+nodejs - v10.6.0
+
+Enter to the frontend directory and `npm i` to install the frontend and make it work.
+
 The frontend could be buggy and may not have enough features, but if you as users could report the bug or request for features, I will be happy to work on it.
 
 You can watch how the app works in this video.
