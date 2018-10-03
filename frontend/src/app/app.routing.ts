@@ -6,6 +6,7 @@ import { LoginComponent } from "./login/login.component";
 import { UsersComponent } from "./users/users.component";
 
 const APP_ROUTES: Routes = [
+  {path:'', redirectTo: '/instances', pathMatch: 'full'}
   {path:"instances", component:InstancesComponent},
   {path:"networks", component:NetworksComponent},
   {path:"accounts", component:AccountsComponent},
