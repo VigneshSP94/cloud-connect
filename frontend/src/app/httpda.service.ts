@@ -12,7 +12,7 @@ import 'rxjs/Rx';
   providedIn: 'root'
 })
 export class HttpdaService {
-  serverUrl = 'http://summa-dev.today/';
+  serverUrl = 'http://your-backend-url/';
 
 
   constructor( private http: Http, private httpC:HttpClient,
