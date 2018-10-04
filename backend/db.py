@@ -16,7 +16,7 @@ conn.execute('''CREATE TABLE NETWORK_DETAILS(private_ip_address TEXT, instance_t
  platform TEXT, subnet_id TEXT, status TEXT, vpc_id TEXT, account_id TEXT, FOREIGN KEY(subnet_id) REFERENCES SUBNET(subnet_id))''')
 
 conn.execute('''CREATE TABLE USERS(username TEXT, password TEXT, email TEXT PRIMARY KEY, position)''')
-conn.execute('INSERT INTO USERS(email, username, password)')
+conn.execute('''INSERT INTO USERS(email, username, password) values("admin@cc.com", "admin", "123456")''')
 
 database.commit()
 conn.close()

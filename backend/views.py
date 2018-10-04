@@ -20,8 +20,7 @@ def db_conn():
 
 
 app = Flask(__name__)
-CORS(app)
-api = Api(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 # conn = db_conn()
 
@@ -62,10 +61,11 @@ def login():
             return jsonify({"message":"Username/Password is incorrect1"})
 
         if check_password_hash(user_check[0],password) == True:
-                token = jwt.encode({"userid":user_check[0], "expiry":time.time()}, secret, algorithm="HS256")
+                token = jwt.encode({"userid":user_check[0], "expiry":int(time.time())+84600}, secret, algorithm="HS256")
                 return jsonify({"cctoken":token.decode('UTF-8')})
         else:
             return jsonify({"message":"Username/Password is incorrect"})
+
 
 
 @app.route('/add_user', methods=['POST'])
@@ -84,6 +84,7 @@ def add_user():
     except Exception as e:
         return e
         
+
 
 @app.route('/edit_user', methods=['POST'])
 @token_validator
@@ -123,26 +124,28 @@ def get_user():
     return jsonify(jdata)
 
 
-@app.route('/add_aws_acc', methods=['POST'])
+@app.route('/add_aws_acc', methods=['POST', 'GET'])
 @token_validator
 def add_aws_account():
-    endpoints = {"US East Ohio":"ec2.us-east-2.amazonaws.com",
-                 "US East N.Virginia":"ec2.us-east-2.amazonaws.com",
-                 "US West N.California": "ec2.us-west-1.amazonaws.com",
-                 "US West Oregon":"ec2.us-west-2.amazonaws.com",
-                 "APAC Mumbai":"ec2.ap-south-1.amazonaws.com",
-                 "APAC Osaka-Local":"ec2.ap-northeast-3.amazonaws.com",
-                 "APAC Seoul":"ec2.ap-northeast-2.amazonaws.com",
-                 "APAC Singapore":"ec2.ap-southeast-1.amazonaws.com",
-                 "APAC Sydney":"ec2.ap-southeast-2.amazonaws.com",
-                 "APAC Tokyo":"ec2.ap-northeast-1.amazonaws.com",
-                 "Canada": "ec2.ca-central-1.amazonaws.com",
-                 "EU-Frankfurt": "ec2.eu-central-1.amazonaws.com",
-                 "EU-Ireland": "ec2.eu-west-1.amazonaws.com",
-                 "EU-London": "ec2.eu-west-2.amazonaws.com",
-                 "EU-Paris": "ec2.eu-west-3.amazonaws.com",
-                 "South America Sao Paulo": "ec2.sa-east-1.amazonaws.com"}
+    endpoints = {"us-east-2":"https://ec2.us-east-2.amazonaws.com",
+                 "us-east-1":"https://ec2.us-east-1.amazonaws.com",
+                 "us-west-1": "https://ec2.us-west-1.amazonaws.com",
+                 "us-west-2":"https://ec2.us-west-2.amazonaws.com",
+                 "ap-south-1":"https://ec2.ap-south-1.amazonaws.com",
+                 "ap-northeast-3":"https://ec2.ap-northeast-3.amazonaws.com",
+                 "ap-northeast-2":"https://ec2.ap-northeast-2.amazonaws.com",
+                 "ap-southeast-1":"https://ec2.ap-southeast-1.amazonaws.com",
+                 "ap-southeast-2":"https://ec2.ap-southeast-2.amazonaws.com",
+                 "ap-northeast-1":"https://ec2.ap-northeast-1.amazonaws.com",
+                 "ca-central-1": "https://ec2.ca-central-1.amazonaws.com",
+                 "eu-central-1": "https://ec2.eu-central-1.amazonaws.com",
+                 "eu-west-1": "https://ec2.eu-west-1.amazonaws.com",
+                 "eu-west-2": "https://ec2.eu-west-2.amazonaws.com",
+                 "eu-west-3": "https://ec2.eu-west-3.amazonaws.com",
+                 "sa-east-1": "https://ec2.sa-east-1.amazonaws.com"}
                  
+    if request.method == 'GET':
+        return render_template('account_add.html')
     if request.method == 'POST':
         content = request.get_json()
         aws_id = content['AWS_ID']
@@ -193,13 +196,15 @@ def instances():
     data = data.fetchall()
     jdata = []
     for i in data:
+        accountname = conn.execute('select account_name from AWS_ACCOUNT where account_id=?',(i[9])).fetchone()
         datadict = {"IP": i[0],
                     "Instance Type": i[1],
-                    "Instance ID": i[2],
+                    "Instance_ID": i[2],
                     "Public IP": i[3],
                     "Private DNS": i[4],
                     "Subnet ID": i[6],
-                    "Status": i[7]}
+                    "Status": i[7],
+                    "Account_Name": accountname[0]}
         jdata.append(datadict)
     return jsonify(jdata)
 
@@ -227,14 +232,16 @@ def network_instances(subnet):
 @token_validator
 def accs():
     conn = db_conn()
-    data = conn.execute('select account_name, account_id, aws_reg from AWS_ACCOUNT')
+    data = conn.execute('select account_name, account_id, aws_reg, aws_id, aws_key from AWS_ACCOUNT')
     data = data.fetchall()
     jdata = []
     for i in data:
         print(i)
         datadict = {"Account_Name": i[0],
                     "Account_ID": i[1],
-                    "Region": i[2]}
+                    "Region": i[2],
+                    "AWS_ID": i[3],
+                    "AWS_KEY": i[4]}
         jdata.append(datadict)
     return jsonify(jdata)
 

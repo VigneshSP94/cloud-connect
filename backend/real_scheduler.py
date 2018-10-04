@@ -16,4 +16,4 @@ while True:
     for i in accounts:
       print("scanning account "+str(i[0]))
       controls.refresh_accs(i[2], i[1], i[3], i[4], i[0])
-    time.sleep(3600)
+    time.sleep(60)
