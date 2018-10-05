@@ -5,7 +5,7 @@ I have come across some scenarios where admins will have to manage EC2 instances
 
 Setup - 
 
-Run db.py script, it will create the database with a user to login.
+Default username and password in the `summadb` (database file) is username: admin@cc.com password: 123456.
 
 Run real_scheduler script in the backend. ( This script will scan all the AWS accounts in the database once per hour and fetches the changes in the account and writes to the application's database)
 
@@ -16,6 +16,7 @@ Frontend:
 Frontend of this application is developed using AngularJS.
 
 npm - v6.4.1
+
 nodejs - v10.6.0
 
 Enter to the frontend directory and `npm i` to install the frontend and make it work.
