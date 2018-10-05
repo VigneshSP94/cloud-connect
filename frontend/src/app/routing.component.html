@@ -1,9 +1,13 @@
-<button class="btn btn-secondary ml-2" *ngIf='loginstatus' (click)='logout()'><i class="material-icons">
+<!--<button class="btn btn-secondary ml-2" *ngIf='loginstatus' (click)='logout()'><i class="material-icons">
     power_settings_new
-    </i></button>
+    </i></button>-->
 
 <div class="row">
+    <button class="btn btn-secondary ml-2" *ngIf='loginstatus' (click)='logout()'><i class="material-icons">
+    power_settings_new
+    </i></button>
     <div class="container">
+
         <ul class="nav nav-pills">
             <li class="nav-item">
               <a class="nav-link" routerLinkActive="active" [routerLink]='["/networks"]'>Networks</a>
