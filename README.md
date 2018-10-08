@@ -19,6 +19,8 @@ npm - v6.4.1
 
 nodejs - v10.6.0
 
+Change the serverUrl in `httpda.service.ts` file to the url where you are hosting the backend.
+
 Enter to the frontend directory and `npm i` to install the frontend and make it work.
 
 The frontend could be buggy and may not have enough features, but if you as users could report the bug or request for features, I will be happy to work on it.
