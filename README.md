@@ -25,4 +25,5 @@ The frontend could be buggy and may not have enough features, but if you as user
 
 You can watch how the app works in this video.
 
+https://www.youtube.com/watch?v=QLBCtAtRI2Y&t=5s
 
