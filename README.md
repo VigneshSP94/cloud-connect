@@ -1,9 +1,27 @@
 # cloud-connect
-A centralized EC2 management system for multiple AWS accounts.
+
+## A centralized EC2 management system for multiple AWS accounts.
+
+### Description:
 
 I have come across some scenarios where admins will have to manage EC2 instances from multiple AWS account. Using this application, you jusy need to add the AWSID and Secret key to the system, the system will probe the accounts periodically and represent instances from all accounts in a HTML table, from there you can turn on/off/reboot/terminate the instances. No need to login to separate accounts.
 
-Setup - 
+### Requirements:
+
+#### Backend:
+
+*Python 3x - Flask, Sqlite3, jwt, flask-cors.*
+
+#### Front-end:
+
+*AngularJS 5.*
+
+### Setup - 
+
+- Clone the Repo to your local server.
+- Use the `summadb` file in the backend directory as database file.
+- The database should live in the same folder where the `views.py` file lives.
+
 
 Default username and password in the `summadb` (database file) is username: admin@cc.com password: 123456.
 
