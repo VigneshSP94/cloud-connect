@@ -27,14 +27,15 @@ node v10.6.0*
 - Default admin user details in the datbase: username- admin, mail- admin@cc.com, password- 1234567.
 - **The database should live in the same folder where the `views.py` file lives.**
 - There are many ways to host a flask application, like using UWSGI, Gunicorn. You can choose a method which works for you, this is a step by step article on [How to host a Flask applications using UWSGI](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-ubuntu-14-04)
-- Run real_scheduler script in the backend. ( This script will scan all the AWS accounts in the database once per hour and fetches the changes in the account and writes to the application's database)
+- Run real_scheduler script in the backend `python3.x real_scheduler.py&`. ( This script will scan all the AWS accounts in the database once per hour and fetches the changes in the account and writes to the application's database)
 
 #### Frontend:
 
 - Change the serverUrl in `httpda.service.ts` file to the url where you are hosting the backend.
 - Go to the root of the Frontend directory and execute the command `npm i`, this will install all the necessary dependancies.
-- Now run the command `ng build --prod`**(Make sure you have Angular/CLI installed)**.
+- Now run the command `ng build --prod` **(Make sure you have Angular/CLI installed)**.
 - This will create a directory `dist`, copy the files available in this folder to your webserver directory.
+- Now your webserver should be serving this Angular APP.
 
 **The App could be buggy and may not have enough features, but if you as users could report the bug or request for features, I will be happy to work on it.**
 
