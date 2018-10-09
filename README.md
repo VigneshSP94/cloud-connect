@@ -10,7 +10,7 @@ I have come across some scenarios where admins will have to manage EC2 instances
 
 #### Backend:
 
-*Python 3x - Flask, Sqlite3, jwt, flask-cors.*
+*Python 3x - Boto3, Flask, Sqlite3, jwt, flask-cors.*
 
 #### Front-end:
 
@@ -20,26 +20,21 @@ node v10.6.0*
 
 ### Setup - 
 
+#### Backend:
+
 - Clone the Repo to your local server.
 - Use the `summadb` file in the backend directory as database file.
 - Default admin user details in the datbase: username- admin, mail- admin@cc.com, password- 1234567.
 - **The database should live in the same folder where the `views.py` file lives.**
 - There are many ways to host a flask application, like using UWSGI, Gunicorn. You can choose a method which works for you, this is a step by step article on [How to host a Flask applications using UWSGI](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-ubuntu-14-04)
+- Run real_scheduler script in the backend. ( This script will scan all the AWS accounts in the database once per hour and fetches the changes in the account and writes to the application's database)
 
+#### Frontend:
 
-Default username and password in the `summadb` (database file) is username: admin@cc.com password: 123456.
+- Change the serverUrl in `httpda.service.ts` file to the url where you are hosting the backend.
+- Go to the root of the Frontend directory and execute the command `npm i`, this will install all the necessary dependancies.
+- Now run the command `ng build --prod`**(Make sure you have Angular/CLI installed)**.
+- This will create a directory `dist`, copy the files available in this folder to your webserver directory.
 
-Run real_scheduler script in the backend. ( This script will scan all the AWS accounts in the database once per hour and fetches the changes in the account and writes to the application's database)
-
-Views is the mail flask file, you can host it as per your wish (Using WSGI).
-
-Change the serverUrl in `httpda.service.ts` file to the url where you are hosting the backend.
-
-Enter to the frontend directory and `npm i` to install the frontend and make it work.
-
-The frontend could be buggy and may not have enough features, but if you as users could report the bug or request for features, I will be happy to work on it.
-
-You can watch how the app works in this video.
-
-https://www.youtube.com/watch?v=QLBCtAtRI2Y&t=5s
+**The App could be buggy and may not have enough features, but if you as users could report the bug or request for features, I will be happy to work on it.**
 
