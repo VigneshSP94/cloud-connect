@@ -14,13 +14,17 @@ I have come across some scenarios where admins will have to manage EC2 instances
 
 #### Front-end:
 
-*AngularJS 5.*
+*AngularJS 5.
+npm v6.4.1+
+node v10.6.0*
 
 ### Setup - 
 
 - Clone the Repo to your local server.
 - Use the `summadb` file in the backend directory as database file.
-- The database should live in the same folder where the `views.py` file lives.
+- Default admin user details in the datbase: username- admin, mail- admin@cc.com, password- 1234567.
+- **The database should live in the same folder where the `views.py` file lives.**
+- There are many ways to host a flask application, like using UWSGI, Gunicorn. You can choose a method which works for you, this is a step by step article on [How to host a Flask applications using UWSGI](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-ubuntu-14-04)
 
 
 Default username and password in the `summadb` (database file) is username: admin@cc.com password: 123456.
@@ -28,14 +32,6 @@ Default username and password in the `summadb` (database file) is username: admi
 Run real_scheduler script in the backend. ( This script will scan all the AWS accounts in the database once per hour and fetches the changes in the account and writes to the application's database)
 
 Views is the mail flask file, you can host it as per your wish (Using WSGI).
-
-Frontend:
-
-Frontend of this application is developed using AngularJS.
-
-npm - v6.4.1
-
-nodejs - v10.6.0
 
 Change the serverUrl in `httpda.service.ts` file to the url where you are hosting the backend.
 
