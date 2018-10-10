@@ -9,11 +9,12 @@ from flask_restful import Api, Resource
 from flask_cors import CORS
 import jwt
 import os
+import uuid
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
-secret = "yoyosoisososoyoyosoi"
+secret = str(uuid.uuid4())
 
 def db_conn():
     return sqlite3.connect('summadb')
