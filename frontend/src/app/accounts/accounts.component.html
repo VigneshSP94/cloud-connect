@@ -31,10 +31,13 @@
             <td>{{data["Account_ID"]}}</td>
             <td>{{data["Account_Name"]}}</td>
             <td>{{data["Region"]}}</td>
-            <td>{{data["AWS_ID"]}}</td>
-            <td>{{data["AWS_KEY"]}}</td>
+            <td ><i [hidden]="visibleSwitch=='visibility'">{{data["AWS_ID"]}}</i><i [hidden]="visibleSwitch=='visibility_off'">**********</i></td>
+            <td><i [hidden]="visibleSwitch=='visibility'">{{data["AWS_KEY"]}}</i><i [hidden]="visibleSwitch=='visibility_off'">**********</i></td>
+
             <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal"
-                (click)="getTabledata(data)"><i class="material-icons">edit</i></button></td>
+                (click)="getTabledata(data)"><i class="material-icons">edit</i></button>
+                <button class="btn btn-primary btn-sm ml-1" *ngIf="visibleSwitch=='visibility_off'" (click)="hideRshow()"><i class="material-icons">visibility_off</i></button>
+                <button class="btn btn-primary btn-sm ml-1" *ngIf="visibleSwitch=='visibility'" (click)="hideRshow()"><i class="material-icons">visibility</i></button></td>
           </tr>
         </tbody>
         <button class="btn btn-primary" (click)="getAccs()" >checkit</button>

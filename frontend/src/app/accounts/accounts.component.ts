@@ -15,6 +15,7 @@ export class AccountsComponent implements OnInit {
     Accounts: Accounts[];
     acdetails={};
     newaccount={};
+    visibleSwitch='visibility'
 
     /** List of Available AWS Endpoint and their Regions*/
     endPoints=["us-east-2", "us-east-1", "us-west-1", "us-west-2",
@@ -53,5 +54,16 @@ export class AccountsComponent implements OnInit {
           res => console.log(res),
           err => console.log(err)
       )
+  }
+
+  hideRshow() {
+      if (this.visibleSwitch == 'visibility'){
+          this.visibleSwitch = 'visibility_off'
+          console.log(this.visibleSwitch)
+      }
+      else if (this.visibleSwitch == 'visibility_off'){
+          this.visibleSwitch = 'visibility'
+          console.log(this.visibleSwitch)
+      }
   }
 }
