@@ -41,3 +41,4 @@ node v10.6.0*
 
 **The App could be buggy and may not have enough features, but if you as users could report the bug or request for features, I will be happy to work on it.**
 
+**Leave a Star if this tool is helpful to you**
